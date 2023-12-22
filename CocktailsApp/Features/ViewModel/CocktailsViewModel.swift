@@ -17,18 +17,14 @@ protocol ICocktailsViewModel {
 }
 
 class CocktailsViewModel: ICocktailsViewModel {
-    //MARK: - Properties
     var cocktailsService: ICocktailsService
     var cocktailsList: [Drink]? = []
     var viewModelPresenter: ViewModelPresenter?
 
-    //MARK: - LifeCycle
     init() {
         cocktailsService = CocktailsService()
     }
     
-    
-    //MARK: - Funcs
     func getData() {
         cocktailsService.fetchByCategory { [weak self] response in
             self?.cocktailsList = response ?? []

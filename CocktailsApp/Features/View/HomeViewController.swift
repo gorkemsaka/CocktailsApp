@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     //MARK: - UI Elements
     private let categoryTableView: UITableView = {
         var tableView = UITableView()
+        tableView.rowHeight = 200
         return tableView
     }()
     
@@ -33,9 +34,9 @@ class HomeViewController: UIViewController {
     private func configure(){
         drawDesign()
         constraints()
+        categoryTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Identifier.cellIdentifier.rawValue)
         viewModel.setDelegate(output: self)
         viewModel.getData()
-        categoryTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Identifier.cellIdentifier.rawValue)
     }
     
     private func constraints(){
@@ -84,8 +85,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: ViewModelPresenter {
     func getData(values: [Drink?]) {
         cocktailsList = values
-        DispatchQueue.main.async {
+        DispatchQueue.main.async{
             self.categoryTableView.reloadData()
         }
     }
+}
+
+#Preview(){
+    HomeViewController()
 }

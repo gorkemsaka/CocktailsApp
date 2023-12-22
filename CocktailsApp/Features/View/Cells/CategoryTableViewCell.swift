@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CategoryTableViewCell: UITableViewCell {
     
@@ -14,6 +15,7 @@ class CategoryTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.layer.cornerRadius = ConstantsNumbers.cornerRadius.rawValue
+        image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         return image
@@ -60,17 +62,17 @@ extension CategoryTableViewCell {
     
     private func cocktailsImageViewConstraints(){
         cocktailsImageView.snp.makeConstraints { make in
-            make.top.equalTo(10)
-            make.left.equalTo(8)
-            make.right.equalTo(-8)
-            make.height.equalTo(130)
+            make.size.equalTo(100)
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(10)
         }
     }
+    
     private func titleLabelConstraints(){
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(cocktailsImageView.snp.bottom).offset(5)
-            make.left.equalTo(8)
-            make.right.equalTo(-8)
+            make.centerY.equalTo(cocktailsImageView)
+            make.left.equalTo(cocktailsImageView.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-10)
         }
     }
 }
@@ -79,5 +81,7 @@ extension CategoryTableViewCell {
 extension CategoryTableViewCell {
     func saveData(model : Drink) {
         titleLabel.text = model.strDrink
+        cocktailsImageView.sd_setImage(with: URL(string: model.strDrinkThumb!))
     }
 }
+
