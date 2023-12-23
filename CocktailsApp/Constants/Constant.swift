@@ -18,12 +18,18 @@ enum API_URL : String {
 
 enum ConstantsNumbers : CGFloat {
     //MARK: - Corner Radius
-    case cornerRadius = 5
+    case cornerRadius = 15
     
     //MARK: - Label Size's
-    case labelSize = 17
+    case headerSize = 50
+    case subtitleSize = 17
 }
 
 enum Identifier : String {
     case cellIdentifier = "CategoryTableViewCell"
+}
+
+enum AppTexts : String {
+    case appTitle = "COCKTAILS"
+    case appSubTitle = "Cocktails are unique drinks where taste turns into art, telling a different story with every sip. They fascinate everyone with the colors, aromas and textures they contain."
 }

@@ -14,9 +14,23 @@ protocol ViewModelPresenter {
 
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
+    private let appTitle: UILabel = {
+        var label = UILabel()
+        label.text = AppTexts.appTitle.rawValue
+        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.headerSize.rawValue, weight: .bold)
+        label.numberOfLines = .zero
+        return label
+    }()
+    private let appSubTitle: UILabel = {
+        var label = UILabel()
+        label.text = AppTexts.appSubTitle.rawValue
+        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.subtitleSize.rawValue, weight: .thin)
+        label.numberOfLines = .zero
+        return label
+    }()
     private let categoryTableView: UITableView = {
         var tableView = UITableView()
-        tableView.rowHeight = 200
+        tableView.rowHeight = 150
         return tableView
     }()
     
@@ -40,6 +54,8 @@ class HomeViewController: UIViewController {
     }
     
     private func constraints(){
+        appTitleConstraints()
+        appSubtitleConstraints()
         tableViewConstraint()
     }
 }
@@ -47,7 +63,9 @@ class HomeViewController: UIViewController {
 //MARK: - drawDesign
 extension HomeViewController {
     private func drawDesign(){
-        view.backgroundColor = .purple
+        view.backgroundColor = .white
+        view.addSubview(appTitle)
+        view.addSubview(appSubTitle)
         view.addSubview(categoryTableView)
         
         categoryTableView.dataSource = self
@@ -57,9 +75,24 @@ extension HomeViewController {
 
 //MARK: - constraints
 extension HomeViewController {
+    private func appTitleConstraints(){
+        appTitle.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+    }
+    private func appSubtitleConstraints(){
+        appSubTitle.snp.makeConstraints { make in
+            make.top.equalTo(appTitle.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+    }
     private func tableViewConstraint(){
         categoryTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(appSubTitle.snp.bottom).offset(100)
+            make.left.right.bottom.equalToSuperview().offset(5)
         }
     }
 }
@@ -89,8 +122,4 @@ extension HomeViewController: ViewModelPresenter {
             self.categoryTableView.reloadData()
         }
     }
-}
-
-#Preview(){
-    HomeViewController()
 }

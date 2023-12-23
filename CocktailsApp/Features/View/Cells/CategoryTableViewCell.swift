@@ -22,7 +22,7 @@ class CategoryTableViewCell: UITableViewCell {
     }()
     private let titleLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.labelSize.rawValue, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.subtitleSize.rawValue, weight: .bold)
         label.numberOfLines = .zero
         return label
     }()
