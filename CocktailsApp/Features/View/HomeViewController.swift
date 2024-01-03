@@ -14,6 +14,12 @@ protocol ViewModelPresenter {
 
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
+    private let titlesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.backgroundColor = .gray
+        return stackView
+    }()
     private let appTitle: UILabel = {
         var label = UILabel()
         label.text = AppTexts.appTitle.rawValue
@@ -54,8 +60,9 @@ class HomeViewController: UIViewController {
     }
     
     private func constraints(){
-        appTitleConstraints()
-        appSubtitleConstraints()
+     titleSubtitleStackViewConstraint()
+        appTitleConstraint()
+        appSubTitleConstraint()
         tableViewConstraint()
     }
 }
@@ -64,25 +71,35 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func drawDesign(){
         view.backgroundColor = .white
+        titlesStackView.addArrangedSubview(appTitle)
+        titlesStackView.addArrangedSubview(appSubTitle)
+        view.addSubview(titlesStackView)
         view.addSubview(appTitle)
         view.addSubview(appSubTitle)
         view.addSubview(categoryTableView)
-        
         categoryTableView.dataSource = self
         categoryTableView.delegate = self
     }
 }
 
-//MARK: - constraints
+//MARK: - Constraints
 extension HomeViewController {
-    private func appTitleConstraints(){
+    private func titleSubtitleStackViewConstraint(){
+        titlesStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(300)
+        }
+    }
+    private func appTitleConstraint(){
         appTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
     }
-    private func appSubtitleConstraints(){
+    private func appSubTitleConstraint(){
         appSubTitle.snp.makeConstraints { make in
             make.top.equalTo(appTitle.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(20)
@@ -91,8 +108,8 @@ extension HomeViewController {
     }
     private func tableViewConstraint(){
         categoryTableView.snp.makeConstraints { make in
-            make.top.equalTo(appSubTitle.snp.bottom).offset(100)
-            make.left.right.bottom.equalToSuperview().offset(5)
+            make.top.equalTo(titlesStackView.snp.bottom).offset(20)
+            make.left.right.bottom.equalToSuperview().offset(20)
         }
     }
 }
@@ -123,3 +140,4 @@ extension HomeViewController: ViewModelPresenter {
         }
     }
 }
+
