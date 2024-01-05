@@ -9,10 +9,15 @@ import Foundation
 
 enum API_URL : String {
     case BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1"
-    case API_KEY = "/filter.php?c=Cocktail"
+    case categoryAPI_KEY = "/filter.php?c=Cocktail"
+    case firstLetterAPI_KEY = "/search.php?f=a"
     
     static func fetchByCategory() -> String {
-        return "\(BASE_URL.rawValue)\(API_KEY.rawValue)"
+        return "\(BASE_URL.rawValue)\(categoryAPI_KEY.rawValue)"
+    }
+    
+    static func fetchByFirstLetter() -> String {
+        return "\(BASE_URL.rawValue)\(firstLetterAPI_KEY.rawValue)"
     }
 }
 

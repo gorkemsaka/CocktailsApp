@@ -14,15 +14,16 @@ protocol ViewModelPresenter {
 
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
-    private let titlesStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.backgroundColor = .gray
-        return stackView
+    private let backgroundImage : UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "stackview_bg2"))
+        imageView.alpha = 0.7
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     private let appTitle: UILabel = {
         var label = UILabel()
         label.text = AppTexts.appTitle.rawValue
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: ConstantsNumbers.headerSize.rawValue, weight: .bold)
         label.numberOfLines = .zero
         return label
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController {
     private let appSubTitle: UILabel = {
         var label = UILabel()
         label.text = AppTexts.appSubTitle.rawValue
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: ConstantsNumbers.subtitleSize.rawValue, weight: .thin)
         label.numberOfLines = .zero
         return label
@@ -60,7 +62,7 @@ class HomeViewController: UIViewController {
     }
     
     private func constraints(){
-     titleSubtitleStackViewConstraint()
+        backgroundImageConstraints()
         appTitleConstraint()
         appSubTitleConstraint()
         tableViewConstraint()
@@ -70,10 +72,8 @@ class HomeViewController: UIViewController {
 //MARK: - drawDesign
 extension HomeViewController {
     private func drawDesign(){
-        view.backgroundColor = .white
-        titlesStackView.addArrangedSubview(appTitle)
-        titlesStackView.addArrangedSubview(appSubTitle)
-        view.addSubview(titlesStackView)
+        view.backgroundColor = .purple
+        view.addSubview(backgroundImage)
         view.addSubview(appTitle)
         view.addSubview(appSubTitle)
         view.addSubview(categoryTableView)
@@ -84,12 +84,9 @@ extension HomeViewController {
 
 //MARK: - Constraints
 extension HomeViewController {
-    private func titleSubtitleStackViewConstraint(){
-        titlesStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(300)
+    private func backgroundImageConstraints(){
+        backgroundImage.snp.makeConstraints { make in
+            make.bottom.equalTo(categoryTableView.snp.top)
         }
     }
     private func appTitleConstraint(){
@@ -108,8 +105,10 @@ extension HomeViewController {
     }
     private func tableViewConstraint(){
         categoryTableView.snp.makeConstraints { make in
-            make.top.equalTo(titlesStackView.snp.bottom).offset(20)
-            make.left.right.bottom.equalToSuperview().offset(20)
+            make.top.equalTo(appSubTitle.snp.bottom).offset(20)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 }

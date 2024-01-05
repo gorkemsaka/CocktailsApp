@@ -24,14 +24,12 @@ class CocktailsViewModel: ICocktailsViewModel {
     init() {
         cocktailsService = CocktailsService()
     }
-    
     func getData() {
         cocktailsService.fetchByCategory { [weak self] response in
             self?.cocktailsList = response ?? []
             self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
         }
     }
-    
     func setDelegate(output: ViewModelPresenter) {
         viewModelPresenter = output
     }

@@ -64,15 +64,15 @@ extension CategoryTableViewCell {
         cocktailsImageView.snp.makeConstraints { make in
             make.size.equalTo(100)
             make.top.equalToSuperview().offset(10)
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
         }
     }
     
     private func titleLabelConstraints(){
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(cocktailsImageView)
-            make.left.equalTo(cocktailsImageView.snp.right).offset(10)
-            make.right.equalToSuperview().offset(-10)
+            make.leading.equalTo(cocktailsImageView.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
 }
