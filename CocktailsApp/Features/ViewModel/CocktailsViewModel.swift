@@ -25,7 +25,7 @@ class CocktailsViewModel: ICocktailsViewModel {
         cocktailsService = CocktailsService()
     }
     func getData() {
-        cocktailsService.fetchByCategory { [weak self] response in
+        cocktailsService.fetchByFirstLetter { [weak self] response in
             self?.cocktailsList = response ?? []
             self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
         }

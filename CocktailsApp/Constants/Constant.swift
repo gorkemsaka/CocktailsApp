@@ -10,7 +10,8 @@ import Foundation
 enum API_URL : String {
     case BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1"
     case categoryAPI_KEY = "/filter.php?c=Cocktail"
-    case firstLetterAPI_KEY = "/search.php?f=a"
+    //don't forget this call needed a search letter
+    case firstLetterAPI_KEY = "/search.php?f="
     
     static func fetchByCategory() -> String {
         return "\(BASE_URL.rawValue)\(categoryAPI_KEY.rawValue)"
@@ -25,7 +26,7 @@ enum ConstantsNumbers : CGFloat {
     //MARK: - Corner Radius
     case cornerRadius = 15
     
-    //MARK: - Label Size's
+    //MARK: - Label Sizes
     case headerSize = 50
     case subtitleSize = 17
 }

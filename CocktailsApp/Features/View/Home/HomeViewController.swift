@@ -11,7 +11,6 @@ import SnapKit
 protocol ViewModelPresenter {
     func getData(values: [Drink?])
 }
-
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
     private let backgroundImage : UIImageView = {
@@ -51,7 +50,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         configure()
     }
-    
     //MARK: - Functions
     private func configure(){
         drawDesign()
@@ -60,19 +58,15 @@ class HomeViewController: UIViewController {
         viewModel.setDelegate(output: self)
         viewModel.getData()
     }
-    
     private func constraints(){
-        backgroundImageConstraints()
         appTitleConstraint()
         appSubTitleConstraint()
         tableViewConstraint()
     }
 }
-
 //MARK: - drawDesign
 extension HomeViewController {
     private func drawDesign(){
-        view.backgroundColor = .purple
         view.addSubview(backgroundImage)
         view.addSubview(appTitle)
         view.addSubview(appSubTitle)
@@ -81,14 +75,8 @@ extension HomeViewController {
         categoryTableView.delegate = self
     }
 }
-
 //MARK: - Constraints
 extension HomeViewController {
-    private func backgroundImageConstraints(){
-        backgroundImage.snp.makeConstraints { make in
-            make.bottom.equalTo(categoryTableView.snp.top)
-        }
-    }
     private func appTitleConstraint(){
         appTitle.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -112,7 +100,6 @@ extension HomeViewController {
         }
     }
 }
-
 //MARK: - TableViewDataSource & TableViewDelegate
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,8 +115,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
-
 //MARK: - getData
 extension HomeViewController: ViewModelPresenter {
     func getData(values: [Drink?]) {
