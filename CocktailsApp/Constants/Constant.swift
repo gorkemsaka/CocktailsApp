@@ -21,21 +21,23 @@ enum API_URL : String {
         return "\(BASE_URL.rawValue)\(firstLetterAPI_KEY.rawValue)"
     }
 }
-
-enum ConstantsNumbers : CGFloat {
+enum ThemeNumbers : CGFloat {
     //MARK: - Corner Radius
     case cornerRadius = 15
     
     //MARK: - Label Sizes
     case headerSize = 50
     case subtitleSize = 17
+    
+    //MARK: - TableView Row Height
+    case tableViewRowHeight = 150
 }
-
 enum Identifier : String {
-    case cellIdentifier = "CategoryTableViewCell"
+    case categoryCellIdentifier = "CategoryTableViewCell"
+    case searchCellIdentifier = "SearchTableViewCell"
 }
-
-enum AppTexts : String {
+enum ThemeTexts : String {
     case appTitle = "COCKTAILS"
     case appSubTitle = "Cocktails are unique drinks where taste turns into art, telling a different story with every sip. They fascinate everyone with the colors, aromas and textures they contain."
+    case searchBarPlaceHolder = "Search..."
 }

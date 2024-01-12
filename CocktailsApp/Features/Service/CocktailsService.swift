@@ -11,9 +11,6 @@ protocol ICocktailsService {
     func fetchByCategory(completion: @escaping([Drink]?) -> Void)
     func fetchByFirstLetter(completion: @escaping([Drink]?) -> Void)
 }
-
-
-
 class CocktailsService: ICocktailsService {
     //MARK: - FetchByCategory
     func fetchByCategory(completion: @escaping ([Drink]?) -> ()){

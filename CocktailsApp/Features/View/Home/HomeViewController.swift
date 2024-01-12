@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ViewModelPresenter {
-    func getData(values: [Drink?])
+    func getCategoryData(values: [Drink?])
 }
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
@@ -21,23 +21,23 @@ class HomeViewController: UIViewController {
     }()
     private let appTitle: UILabel = {
         var label = UILabel()
-        label.text = AppTexts.appTitle.rawValue
+        label.text = ThemeTexts.appTitle.rawValue
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.headerSize.rawValue, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: ThemeNumbers.headerSize.rawValue, weight: .bold)
         label.numberOfLines = .zero
         return label
     }()
     private let appSubTitle: UILabel = {
         var label = UILabel()
-        label.text = AppTexts.appSubTitle.rawValue
+        label.text = ThemeTexts.appSubTitle.rawValue
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: ConstantsNumbers.subtitleSize.rawValue, weight: .thin)
+        label.font = UIFont.systemFont(ofSize: ThemeNumbers.subtitleSize.rawValue, weight: .thin)
         label.numberOfLines = .zero
         return label
     }()
     private let categoryTableView: UITableView = {
         var tableView = UITableView()
-        tableView.rowHeight = 150
+        tableView.rowHeight = ThemeNumbers.tableViewRowHeight.rawValue
         return tableView
     }()
     
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
     var viewModel : ICocktailsViewModel = CocktailsViewModel()
     
     //MARK: - Life Cycyle
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         configure()
     }
@@ -54,9 +54,9 @@ class HomeViewController: UIViewController {
     private func configure(){
         drawDesign()
         constraints()
-        categoryTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Identifier.cellIdentifier.rawValue)
+        categoryTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Identifier.categoryCellIdentifier.rawValue)
         viewModel.setDelegate(output: self)
-        viewModel.getData()
+        viewModel.getCategoryData()
     }
     private func constraints(){
         appTitleConstraint()
@@ -105,10 +105,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cocktailsList.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentCocktail = cocktailsList[indexPath.row]
-        guard let cell : CategoryTableViewCell = categoryTableView.dequeueReusableCell(withIdentifier: Identifier.cellIdentifier.rawValue) as? CategoryTableViewCell else {
+        guard let cell : CategoryTableViewCell = categoryTableView.dequeueReusableCell(withIdentifier: Identifier.categoryCellIdentifier.rawValue) as? CategoryTableViewCell else {
             return UITableViewCell()
         }
         cell.saveData(model: currentCocktail!)
@@ -117,7 +116,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 //MARK: - getData
 extension HomeViewController: ViewModelPresenter {
-    func getData(values: [Drink?]) {
+    func getCategoryData(values: [Drink?]) {
         cocktailsList = values
         DispatchQueue.main.async{
             self.categoryTableView.reloadData()

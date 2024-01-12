@@ -12,6 +12,7 @@
 		503A50332B30FC8300092A5D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 503A50322B30FC8300092A5D /* SnapKit-Dynamic */; };
 		508867682B4EDA7300E294C6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508867672B4EDA7300E294C6 /* SearchViewController.swift */; };
 		5088676B2B4EDBA000E294C6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5088676A2B4EDBA000E294C6 /* TabBarController.swift */; };
+		50A89FC92B5161DC004BB1E0 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A89FC82B5161DC004BB1E0 /* SearchTableViewCell.swift */; };
 		50D661D92B31B06000919BAB /* CocktailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661D82B31B06000919BAB /* CocktailsModel.swift */; };
 		50D661DB2B31B33700919BAB /* CocktailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661DA2B31B33700919BAB /* CocktailsService.swift */; };
 		50D661DF2B31B39C00919BAB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661DE2B31B39C00919BAB /* Constant.swift */; };
@@ -29,6 +30,7 @@
 		501CAA952B35DCA600DDFAD6 /* CocktailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewModel.swift; sourceTree = "<group>"; };
 		508867672B4EDA7300E294C6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5088676A2B4EDBA000E294C6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		50A89FC82B5161DC004BB1E0 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		50D661D82B31B06000919BAB /* CocktailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsModel.swift; sourceTree = "<group>"; };
 		50D661DA2B31B33700919BAB /* CocktailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsService.swift; sourceTree = "<group>"; };
 		50D661DE2B31B39C00919BAB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		508867652B4EDA4E00E294C6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				50D661E92B33A08A00919BAB /* Cells */,
+				50A89FC72B5161A9004BB1E0 /* Cell */,
 				50D661E72B33A01A00919BAB /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -69,6 +71,7 @@
 		508867662B4EDA5F00E294C6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				50A89FC62B5161A4004BB1E0 /* Cell */,
 				508867672B4EDA7300E294C6 /* SearchViewController.swift */,
 			);
 			path = Search;
@@ -80,6 +83,22 @@
 				5088676A2B4EDBA000E294C6 /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		50A89FC62B5161A4004BB1E0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50A89FC82B5161DC004BB1E0 /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		50A89FC72B5161A9004BB1E0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50D661EA2B33A0BA00919BAB /* CategoryTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		50D661DC2B31B38600919BAB /* Constants */ = {
@@ -96,14 +115,6 @@
 				501CAA952B35DCA600DDFAD6 /* CocktailsViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		50D661E92B33A08A00919BAB /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				50D661EA2B33A0BA00919BAB /* CategoryTableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		50F288322B30CD9900152AC6 = {
@@ -273,6 +284,7 @@
 				50D661D92B31B06000919BAB /* CocktailsModel.swift in Sources */,
 				50D661DB2B31B33700919BAB /* CocktailsService.swift in Sources */,
 				508867682B4EDA7300E294C6 /* SearchViewController.swift in Sources */,
+				50A89FC92B5161DC004BB1E0 /* SearchTableViewCell.swift in Sources */,
 				50F288412B30CD9900152AC6 /* SceneDelegate.swift in Sources */,
 				501CAA962B35DCA600DDFAD6 /* CocktailsViewModel.swift in Sources */,
 				50D661EB2B33A0BA00919BAB /* CategoryTableViewCell.swift in Sources */,

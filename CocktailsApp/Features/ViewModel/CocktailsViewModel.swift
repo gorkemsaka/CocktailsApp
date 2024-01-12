@@ -11,8 +11,8 @@ protocol ICocktailsViewModel {
     var cocktailsService : ICocktailsService { get }
     var cocktailsList : [Drink]? { get set }
     var viewModelPresenter : ViewModelPresenter? { get }
-    
-    func getData()
+
+    func getCategoryData()
     func setDelegate(output : ViewModelPresenter)
 }
 
@@ -24,10 +24,10 @@ class CocktailsViewModel: ICocktailsViewModel {
     init() {
         cocktailsService = CocktailsService()
     }
-    func getData() {
-        cocktailsService.fetchByFirstLetter { [weak self] response in
+    func getCategoryData() {
+        cocktailsService.fetchByCategory { [weak self] response in
             self?.cocktailsList = response ?? []
-            self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
+            self?.viewModelPresenter?.getCategoryData(values: self?.cocktailsList ?? [])
         }
     }
     func setDelegate(output: ViewModelPresenter) {

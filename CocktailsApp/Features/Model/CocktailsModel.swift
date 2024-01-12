@@ -11,7 +11,6 @@ import Foundation
 struct Drinks: Codable {
     let drinks: [Drink]?
 }
-
 // MARK: - Drink
 struct Drink: Codable {
     let strDrink: String?
