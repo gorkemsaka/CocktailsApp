@@ -20,7 +20,6 @@ class CocktailsService: ICocktailsService {
                 print(expectedError.localizedDescription)
                 completion(nil)
             }
-            
             if let safeData = data {
                 let cocktails = try? JSONDecoder().decode(Drinks.self, from: safeData)
                 if let cocktails = cocktails {

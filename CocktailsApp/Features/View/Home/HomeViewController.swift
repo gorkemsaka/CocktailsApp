@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ViewModelPresenter {
-    func getCategoryData(values: [Drink?])
+    func getData(values: [Drink?])
 }
 class HomeViewController: UIViewController {
     //MARK: - UI Elements
@@ -40,7 +40,6 @@ class HomeViewController: UIViewController {
         tableView.rowHeight = ThemeNumbers.tableViewRowHeight.rawValue
         return tableView
     }()
-    
     //MARK: - Properties
     private lazy var cocktailsList : [Drink?] = []
     var viewModel : ICocktailsViewModel = CocktailsViewModel()
@@ -56,7 +55,7 @@ class HomeViewController: UIViewController {
         constraints()
         categoryTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Identifier.categoryCellIdentifier.rawValue)
         viewModel.setDelegate(output: self)
-        viewModel.getCategoryData()
+        viewModel.getData()
     }
     private func constraints(){
         appTitleConstraint()
@@ -116,7 +115,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 //MARK: - getData
 extension HomeViewController: ViewModelPresenter {
-    func getCategoryData(values: [Drink?]) {
+    func getData(values: [Drink?]) {
         cocktailsList = values
         DispatchQueue.main.async{
             self.categoryTableView.reloadData()

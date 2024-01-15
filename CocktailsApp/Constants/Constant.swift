@@ -11,7 +11,7 @@ enum API_URL : String {
     case BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1"
     case categoryAPI_KEY = "/filter.php?c=Cocktail"
     //don't forget this call needed a search letter
-    case firstLetterAPI_KEY = "/search.php?f="
+    case firstLetterAPI_KEY = "/search.php?f=c"
     
     static func fetchByCategory() -> String {
         return "\(BASE_URL.rawValue)\(categoryAPI_KEY.rawValue)"
@@ -20,6 +20,10 @@ enum API_URL : String {
     static func fetchByFirstLetter() -> String {
         return "\(BASE_URL.rawValue)\(firstLetterAPI_KEY.rawValue)"
     }
+}
+enum FetchMode {
+    case byCategory
+    case byFirstLetter
 }
 enum ThemeNumbers : CGFloat {
     //MARK: - Corner Radius

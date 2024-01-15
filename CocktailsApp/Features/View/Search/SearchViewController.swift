@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 
+protocol FirstLetterViewModelPresenter {
+    func getData(values: [Drink?])
+}
 class SearchViewController: UIViewController {
     //MARK: - UI Elements
     private let searchTableView: UITableView = {
@@ -17,7 +20,8 @@ class SearchViewController: UIViewController {
     }()
     private let searchController = UISearchController(searchResultsController: nil)
     //MARK: - Properties
-    
+    private lazy var cocktailsList: [Drink?] = []
+    var viewModel: IFirstLetterViewModel = FirstLetterViewModel()
     
     //MARK: - Life Cycyle
     override func viewDidLoad() {
@@ -30,14 +34,28 @@ class SearchViewController: UIViewController {
         setupSearchController()
         constraints()
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: Identifier.searchCellIdentifier.rawValue)
+        viewModel.setDelegate(output: self)
+        viewModel.getFirstLetterData()
     }
 }
+//MARK: - drawDesign
 extension SearchViewController {
     private func drawDesign(){
         view.backgroundColor = .white
         view.addSubview(searchTableView)
         searchTableView.delegate = self
         searchTableView.dataSource = self
+    }
+}
+//MARK: - Constraints
+extension SearchViewController {
+    private func constraints(){
+        searchTableViewConstraint()
+    }
+    private func searchTableViewConstraint(){
+        searchTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 //MARK: - Search Controller Functions
@@ -59,24 +77,24 @@ extension SearchViewController: UISearchResultsUpdating{
 //MARK: - Setup TableView
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return cocktailsList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentCocktail = cocktailsList[indexPath.row]
         guard let cell: SearchTableViewCell = searchTableView.dequeueReusableCell(withIdentifier: Identifier.searchCellIdentifier.rawValue) as? SearchTableViewCell else {
             return UITableViewCell()
         }
-        cell.getSearchData()
+        cell.getData(model: currentCocktail!)
         return cell
     }
 }
-//MARK: - Constraints
-extension SearchViewController {
-    private func constraints(){
-        searchTableViewConstraint()
-    }
-    private func searchTableViewConstraint(){
-        searchTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+
+//MARK: - Fetch Data From ViewModel
+extension SearchViewController: FirstLetterViewModelPresenter {
+    func getData(values: [Drink?]) {
+        cocktailsList = values
+        DispatchQueue.main.async {
+            self.searchTableView.reloadData()
         }
     }
 }

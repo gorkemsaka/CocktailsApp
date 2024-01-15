@@ -13,6 +13,7 @@
 		508867682B4EDA7300E294C6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508867672B4EDA7300E294C6 /* SearchViewController.swift */; };
 		5088676B2B4EDBA000E294C6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5088676A2B4EDBA000E294C6 /* TabBarController.swift */; };
 		50A89FC92B5161DC004BB1E0 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A89FC82B5161DC004BB1E0 /* SearchTableViewCell.swift */; };
+		50BF718E2B55539600AC292B /* FirstLetterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BF718D2B55539600AC292B /* FirstLetterViewModel.swift */; };
 		50D661D92B31B06000919BAB /* CocktailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661D82B31B06000919BAB /* CocktailsModel.swift */; };
 		50D661DB2B31B33700919BAB /* CocktailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661DA2B31B33700919BAB /* CocktailsService.swift */; };
 		50D661DF2B31B39C00919BAB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D661DE2B31B39C00919BAB /* Constant.swift */; };
@@ -31,6 +32,7 @@
 		508867672B4EDA7300E294C6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5088676A2B4EDBA000E294C6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		50A89FC82B5161DC004BB1E0 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		50BF718D2B55539600AC292B /* FirstLetterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLetterViewModel.swift; sourceTree = "<group>"; };
 		50D661D82B31B06000919BAB /* CocktailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsModel.swift; sourceTree = "<group>"; };
 		50D661DA2B31B33700919BAB /* CocktailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsService.swift; sourceTree = "<group>"; };
 		50D661DE2B31B39C00919BAB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -101,6 +103,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		50BF718B2B55537100AC292B /* CategoryCall */ = {
+			isa = PBXGroup;
+			children = (
+				501CAA952B35DCA600DDFAD6 /* CocktailsViewModel.swift */,
+			);
+			path = CategoryCall;
+			sourceTree = "<group>";
+		};
+		50BF718C2B55537D00AC292B /* FirstLetterCall */ = {
+			isa = PBXGroup;
+			children = (
+				50BF718D2B55539600AC292B /* FirstLetterViewModel.swift */,
+			);
+			path = FirstLetterCall;
+			sourceTree = "<group>";
+		};
 		50D661DC2B31B38600919BAB /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +130,8 @@
 		50D661E02B339EA100919BAB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				501CAA952B35DCA600DDFAD6 /* CocktailsViewModel.swift */,
+				50BF718C2B55537D00AC292B /* FirstLetterCall */,
+				50BF718B2B55537100AC292B /* CategoryCall */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -289,6 +308,7 @@
 				501CAA962B35DCA600DDFAD6 /* CocktailsViewModel.swift in Sources */,
 				50D661EB2B33A0BA00919BAB /* CategoryTableViewCell.swift in Sources */,
 				50D661DF2B31B39C00919BAB /* Constant.swift in Sources */,
+				50BF718E2B55539600AC292B /* FirstLetterViewModel.swift in Sources */,
 				5088676B2B4EDBA000E294C6 /* TabBarController.swift in Sources */,
 				50D661E82B33A01A00919BAB /* HomeViewController.swift in Sources */,
 			);

@@ -75,8 +75,8 @@ extension SearchTableViewCell {
 
 //MARK: - Dummie Data
 extension SearchTableViewCell {
-    func getSearchData(){
-        titleLabel.text = "TESTING"
-        cocktailsImageView.image = UIImage(named: "stackview_bg")
+    func getData(model: Drink){
+        titleLabel.text = model.strDrink
+        cocktailsImageView.sd_setImage(with: URL(string: model.strDrinkThumb!))
     }
 }
