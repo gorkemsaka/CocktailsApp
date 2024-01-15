@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IFirstLetterViewModel {
+protocol IByNameViewModel {
     var cocktailsService: ICocktailsService { get }
     var cocktailsList: [Drink]? { get set}
     var viewModelPresenter : FirstLetterViewModelPresenter? { get }
@@ -15,7 +15,7 @@ protocol IFirstLetterViewModel {
     func getFirstLetterData(letter: String)
     func setDelegate(output: FirstLetterViewModelPresenter)
 }
-class FirstLetterViewModel : IFirstLetterViewModel {
+class ByNameViewModel : IByNameViewModel {
     //MARK: - Properties
     var cocktailsService: ICocktailsService
     var cocktailsList: [Drink]? = []
@@ -27,7 +27,7 @@ class FirstLetterViewModel : IFirstLetterViewModel {
     }
     //MARK: - Functions
     func getFirstLetterData(letter: String) {
-        cocktailsService.fetchByFirstLetter(letter: letter) { [weak self] response in
+        cocktailsService.fetchByName(cocktailName: letter) { [weak self] response in
             self?.cocktailsList = response ?? []
             self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
         }
