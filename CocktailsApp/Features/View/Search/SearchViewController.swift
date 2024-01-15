@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         constraints()
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: Identifier.searchCellIdentifier.rawValue)
         viewModel.setDelegate(output: self)
-        viewModel.getFirstLetterData()
+        viewModel.getFirstLetterData(letter:"a")
     }
 }
 //MARK: - drawDesign
@@ -71,7 +71,9 @@ extension SearchViewController: UISearchResultsUpdating{
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text!)
+        if let searchText = searchController.searchBar.text?.lowercased() {
+             viewModel.getFirstLetterData(letter: searchText)
+         }
     }
 }
 //MARK: - Setup TableView

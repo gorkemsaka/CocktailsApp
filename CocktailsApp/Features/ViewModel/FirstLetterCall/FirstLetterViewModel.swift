@@ -12,7 +12,7 @@ protocol IFirstLetterViewModel {
     var cocktailsList: [Drink]? { get set}
     var viewModelPresenter : FirstLetterViewModelPresenter? { get }
     
-    func getFirstLetterData()
+    func getFirstLetterData(letter: String)
     func setDelegate(output: FirstLetterViewModelPresenter)
 }
 class FirstLetterViewModel : IFirstLetterViewModel {
@@ -26,8 +26,8 @@ class FirstLetterViewModel : IFirstLetterViewModel {
         cocktailsService = CocktailsService()
     }
     //MARK: - Functions
-    func getFirstLetterData() {
-        cocktailsService.fetchByFirstLetter { [weak self] response in
+    func getFirstLetterData(letter: String) {
+        cocktailsService.fetchByFirstLetter(letter: letter) { [weak self] response in
             self?.cocktailsList = response ?? []
             self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
         }

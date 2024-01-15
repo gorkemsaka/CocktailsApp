@@ -11,7 +11,7 @@ enum API_URL : String {
     case BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1"
     case categoryAPI_KEY = "/filter.php?c=Cocktail"
     //don't forget this call needed a search letter
-    case firstLetterAPI_KEY = "/search.php?f=c"
+    case firstLetterAPI_KEY = "/search.php?f="
     
     static func fetchByCategory() -> String {
         return "\(BASE_URL.rawValue)\(categoryAPI_KEY.rawValue)"

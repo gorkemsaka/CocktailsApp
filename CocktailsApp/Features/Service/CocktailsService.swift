@@ -9,7 +9,7 @@ import Foundation
 
 protocol ICocktailsService {
     func fetchByCategory(completion: @escaping([Drink]?) -> Void)
-    func fetchByFirstLetter(completion: @escaping([Drink]?) -> Void)
+    func fetchByFirstLetter(letter: String, completion: @escaping([Drink]?) -> Void)
 }
 class CocktailsService: ICocktailsService {
     //MARK: - FetchByCategory
@@ -29,8 +29,8 @@ class CocktailsService: ICocktailsService {
         }.resume()
     }
     //MARK: - FetchByFirstLetter
-    func fetchByFirstLetter(completion: @escaping ([Drink]?) -> Void) {
-        let url = URL(string: API_URL.fetchByFirstLetter())
+    func fetchByFirstLetter(letter: String, completion: @escaping ([Drink]?) -> Void) {
+        let url = URL(string: API_URL.fetchByFirstLetter()+letter)
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if let expectedError = error {
                 print(expectedError.localizedDescription)
