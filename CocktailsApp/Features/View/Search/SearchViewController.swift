@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol FirstLetterViewModelPresenter {
+protocol ByNameViewModelPresenter {
     func getData(values: [Drink?])
 }
 class SearchViewController: UIViewController {
@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     //MARK: - Properties
     private lazy var cocktailsList: [Drink?] = []
-    var viewModel: IFirstLetterViewModel = FirstLetterViewModel()
+    var viewModel: IByNameViewModel = ByNameViewModel()
     
     //MARK: - Life Cycyle
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         constraints()
         searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: Identifier.searchCellIdentifier.rawValue)
         viewModel.setDelegate(output: self)
-        viewModel.getFirstLetterData(letter:"a")
+        viewModel.getByName(cocktailName: "")
     }
 }
 //MARK: - drawDesign
@@ -72,7 +72,7 @@ extension SearchViewController: UISearchResultsUpdating{
     }
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text?.lowercased() {
-             viewModel.getFirstLetterData(letter: searchText)
+             viewModel.getByName(cocktailName: searchText)
          }
     }
 }
@@ -90,9 +90,8 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
 //MARK: - Fetch Data From ViewModel
-extension SearchViewController: FirstLetterViewModelPresenter {
+extension SearchViewController: ByNameViewModelPresenter {
     func getData(values: [Drink?]) {
         cocktailsList = values
         DispatchQueue.main.async {

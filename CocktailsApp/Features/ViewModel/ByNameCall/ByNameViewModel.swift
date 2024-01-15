@@ -10,29 +10,29 @@ import Foundation
 protocol IByNameViewModel {
     var cocktailsService: ICocktailsService { get }
     var cocktailsList: [Drink]? { get set}
-    var viewModelPresenter : FirstLetterViewModelPresenter? { get }
+    var viewModelPresenter : ByNameViewModelPresenter? { get }
     
-    func getFirstLetterData(letter: String)
-    func setDelegate(output: FirstLetterViewModelPresenter)
+    func getByName(cocktailName: String)
+    func setDelegate(output: ByNameViewModelPresenter)
 }
 class ByNameViewModel : IByNameViewModel {
     //MARK: - Properties
     var cocktailsService: ICocktailsService
     var cocktailsList: [Drink]? = []
-    var viewModelPresenter: FirstLetterViewModelPresenter?
+    var viewModelPresenter: ByNameViewModelPresenter?
     
     //MARK: - Life Cycle
     init(){
         cocktailsService = CocktailsService()
     }
     //MARK: - Functions
-    func getFirstLetterData(letter: String) {
-        cocktailsService.fetchByName(cocktailName: letter) { [weak self] response in
+    func getByName(cocktailName: String) {
+        cocktailsService.fetchByName(cocktailName: cocktailName) { [weak self] response in
             self?.cocktailsList = response ?? []
             self?.viewModelPresenter?.getData(values: self?.cocktailsList ?? [])
         }
     }
-    func setDelegate(output: FirstLetterViewModelPresenter) {
+    func setDelegate(output: ByNameViewModelPresenter) {
         viewModelPresenter = output
     }
 }

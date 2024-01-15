@@ -42,7 +42,6 @@ class SearchTableViewCell: UITableViewCell {
         constraints()
     }
 }
-
 //MARK: - drawDesign
 extension SearchTableViewCell {
     private func drawDesign(){
@@ -50,7 +49,6 @@ extension SearchTableViewCell {
         addSubview(titleLabel)
     }
 }
-
 //MARK: - Constraints
 extension SearchTableViewCell {
     private func constraints(){
@@ -73,7 +71,7 @@ extension SearchTableViewCell {
     }
 }
 
-//MARK: - Dummie Data
+//MARK: - Get Data
 extension SearchTableViewCell {
     func getData(model: Drink){
         titleLabel.text = model.strDrink
