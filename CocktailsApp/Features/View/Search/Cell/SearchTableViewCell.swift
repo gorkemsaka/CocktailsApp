@@ -27,7 +27,7 @@ class SearchTableViewCell: UITableViewCell {
         return label
     }()
     //MARK: - Properties
-    
+
     //MARK: - Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -70,7 +70,6 @@ extension SearchTableViewCell {
         }
     }
 }
-
 //MARK: - Get Data
 extension SearchTableViewCell {
     func getData(model: Drink){

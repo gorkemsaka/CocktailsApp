@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     //MARK: - Properties
     private lazy var cocktailsList: [Drink?] = []
     var viewModel: IByNameViewModel = ByNameViewModel()
+    var detailVC: DetailViewController = DetailViewController()
     
     //MARK: - Life Cycyle
     override func viewDidLoad() {
@@ -88,6 +89,11 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         }
         cell.getData(model: currentCocktail!)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCocktail = cocktailsList[indexPath.row]
+        detailVC.getData(model: currentCocktail!)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 //MARK: - Fetch Data From ViewModel

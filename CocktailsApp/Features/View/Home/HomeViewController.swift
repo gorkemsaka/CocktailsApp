@@ -43,6 +43,7 @@ class HomeViewController: UIViewController {
     //MARK: - Properties
     private lazy var cocktailsList : [Drink?] = []
     var viewModel : ICocktailsViewModel = CocktailsViewModel()
+    var detailVC: DetailViewController = DetailViewController()
     
     //MARK: - Life Cycyle
     override func viewDidLoad(){
@@ -58,6 +59,7 @@ class HomeViewController: UIViewController {
         viewModel.getData()
     }
     private func constraints(){
+        backgroundImageConstraint()
         appTitleConstraint()
         appSubTitleConstraint()
         tableViewConstraint()
@@ -76,6 +78,12 @@ extension HomeViewController {
 }
 //MARK: - Constraints
 extension HomeViewController {
+    private func backgroundImageConstraint(){
+        backgroundImage.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
+    }
     private func appTitleConstraint(){
         appTitle.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -111,6 +119,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.saveData(model: currentCocktail!)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCocktail = cocktailsList[indexPath.row]
+        detailVC.getData(model: currentCocktail!)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 //MARK: - getData
