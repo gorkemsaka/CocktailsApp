@@ -31,6 +31,7 @@ enum ThemeNumbers : CGFloat {
     
     //MARK: - Label Sizes
     case headerSize = 50
+    case titleSize = 30
     case subtitleSize = 17
     
     //MARK: - TableView Row Height
@@ -44,4 +45,6 @@ enum ThemeTexts : String {
     case appTitle = "COCKTAILS"
     case appSubTitle = "Cocktails are unique drinks where taste turns into art, telling a different story with every sip. They fascinate everyone with the colors, aromas and textures they contain."
     case searchBarPlaceHolder = "Search..."
+    case cocktailInstruction = "Instruction"
+    case cocktailIngredients = "Ingredients"
 }

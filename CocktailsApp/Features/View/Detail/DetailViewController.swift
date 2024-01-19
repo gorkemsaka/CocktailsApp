@@ -10,7 +10,6 @@ import SnapKit
 import SDWebImage
 
 class DetailViewController: UIViewController {
-    //MARK: - UI Elements
     private let backgroundImage : UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "stackview_bg2"))
         imageView.alpha = 0.3
@@ -32,10 +31,22 @@ class DetailViewController: UIViewController {
         label.numberOfLines = .zero
         return label
     }()
+    private let cocktailInstructionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: ThemeNumbers.titleSize.rawValue, weight: .thin)
+        label.numberOfLines = .zero
+        label.text = ThemeTexts.cocktailInstruction.rawValue
+        return label
+    }()
     private let cocktailInstruction: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: ThemeNumbers.subtitleSize.rawValue, weight: .light)
+        label.font = UIFont.systemFont(ofSize: ThemeNumbers.subtitleSize.rawValue, weight: .ultraLight)
         label.numberOfLines = .zero
+        return label
+    }()
+    private let cocktailsIngredient1: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: ThemeNumbers.subtitleSize.rawValue, weight: .light)
         return label
     }()
     //MARK: - Properties
@@ -46,7 +57,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         configure()
     }
-    
     //MARK: - Functions
     private func configure(){
         navigationItem.hidesBackButton = true
@@ -58,7 +68,9 @@ class DetailViewController: UIViewController {
         backgroundImageConstraint()
         cocktailImageViewConstraint()
         cocktailNameLabelConstraint()
+        cocktailInstructionLabelConstraint()
         cocktailInstructionConstraint()
+        cocktailIngredient1Constraint()
     }
 }
 //MARK: - Draw Design
@@ -67,7 +79,9 @@ extension DetailViewController {
         view.addSubview(backgroundImage)
         view.addSubview(cocktailImageView)
         view.addSubview(cocktailNameLabel)
+        view.addSubview(cocktailInstructionLabel)
         view.addSubview(cocktailInstruction)
+        view.addSubview(cocktailsIngredient1)
     }
 }
 //MARK: - Constraints
@@ -94,12 +108,29 @@ extension DetailViewController {
             make.trailing.equalToSuperview().offset(-20)
         }
     }
+    private func cocktailInstructionLabelConstraint(){
+        cocktailInstructionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cocktailNameLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+    }
     private func cocktailInstructionConstraint(){
         cocktailInstruction.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
+            make.top.equalTo(cocktailInstructionLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(cocktailNameLabel.snp.bottom).offset(10)
+        }
+    }
+    private func cocktailIngredient1Constraint(){
+        cocktailsIngredient1.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cocktailInstruction.snp.top).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(20)
         }
     }
 }
@@ -109,6 +140,6 @@ extension DetailViewController{
         cocktailNameLabel.text = model.strDrink
         cocktailInstruction.text = model.strInstructions
         cocktailImageView.sd_setImage(with: URL(string: model.strDrinkThumb!))
+        cocktailsIngredient1.text = model.strIngredient1
     }
 }
-
